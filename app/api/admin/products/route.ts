@@ -57,8 +57,7 @@ export async function POST(request: NextRequest) {
         const newCategory = await db
           .insert(categories)
           .values({
-            name: category,
-            description: `Products in ${category} category`
+            name: category
           })
           .returning()
         

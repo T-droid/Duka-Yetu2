@@ -7,7 +7,7 @@ import { eq } from 'drizzle-orm';
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication and admin role
@@ -23,7 +23,7 @@ export async function PATCH(
     }
 
     const { status } = await req.json();
-    const orderId = params.id;
+    const { id: orderId } = await params;
 
     // Validate status
     const validStatuses = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled'];

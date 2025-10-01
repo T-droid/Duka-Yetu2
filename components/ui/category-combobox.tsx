@@ -18,7 +18,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { useGetCategories } from "@/hooks/useGetResource";
+import { useCategories } from "@/hooks/useCategories";
 
 interface CategoryComboBoxProps {
   value?: string;
@@ -37,7 +37,7 @@ export function CategoryComboBox({
 }: CategoryComboBoxProps) {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const { data: categories = [], isLoading, error } = useGetCategories();
+  const { data: categories = [], isLoading, error } = useCategories();
 
   const handleSelect = (selectedValue: string) => {
     const newValue = selectedValue === value ? "" : selectedValue;
@@ -110,11 +110,11 @@ export function CategoryComboBox({
                       )}
                     />
                     {category.name}
-                    {category.description && (
+                    {/* {category.description && (
                       <span className="ml-2 text-xs text-muted-foreground">
                         - {category.description}
                       </span>
-                    )}
+                    )} */}
                   </CommandItem>
                 ))}
               </CommandGroup>

@@ -5,10 +5,10 @@ import { eq } from "drizzle-orm"
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { categoryId: string } }
+  { params }: { params: Promise<{ categoryId: string }> }
 ) {
   try {
-    const categoryId = params.categoryId
+    const { categoryId } = await params
 
     // Verify category exists
     const category = await db
